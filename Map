@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 500,
+  "title": "Football stadium in Europe",
+  "projection": {"type": "equalEarth"},
+  
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Qiyan-Zhong/FIT3179-Week8/main/custom.geo%20.json",
+        
+        "format": {"type": "topojson", "feature": "custom"}
+      },
+      
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Qiyan-Zhong/FIT3179-Week8/main/stadiums_20150302.csv"
+      },
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "Capacity",
+          "type": "quantitative",
+          "scale": {"domain": [0, 1000000]}
+        }
+      }
+    }
+  ]
+}
