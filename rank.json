@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 600,
+  "height": 200,
+  "title": {
+    "text": "Football  Ranked Changed stadium in Europe",
+    "fontSize": 25
+  },
+  "data": {
+    "url": "fifa_ranking(1).csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "country_full",
+        "oneOf": ["England", "France", "Germany", "Scotland", "Spain"]
+      }
+    }
+  ],
+  "mark": {"type":"bar","tooltip":true},
+  "encoding": {
+    "x": {
+      "field": "rank_date",
+      "type": "temporal"
+    },
+    "y": {
+      "aggregate": "mean",
+      "field": "rank_change",
+      "type": "quantitative"
+    },
+    "color":{
+        "field":"country_full"
+    },
+    "row": { "field": "country_full" }
+  }
+}
